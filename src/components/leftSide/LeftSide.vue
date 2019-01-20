@@ -1,7 +1,9 @@
 <template>
     <div>
         <LeftSideHeader></LeftSideHeader>
-        <LeftSideChatsList></LeftSideChatsList>
+        <LeftSideChatsList
+                v-on:onChatClick="onChatClick"
+                :chats="chats"></LeftSideChatsList>
     </div>
 </template>
 
@@ -10,7 +12,15 @@
     import LeftSideChatsList from "./LeftSideChatsList";
     export default {
         name: "LeftSide",
-        components: {LeftSideChatsList, LeftSideHeader}
+        components: {LeftSideChatsList, LeftSideHeader},
+        props: [
+            "chats"
+        ],
+        methods: {
+            onChatClick(chat) {
+                this.$emit("onChatClick", chat)
+            }
+        }
     }
 </script>
 

@@ -12,8 +12,14 @@
         </b-input-group>
 
         <b-list-group>
-            <b-list-group-item button class="pl-0 pr-0">
-                <ChatPreview></ChatPreview>
+            <b-list-group-item
+                    v-for="chat in chats"
+                    :key="chat.id"
+                    @click="clickedChat(chat)"
+                    button
+                    class="pl-0 pr-0">
+                <ChatPreview
+                        :chat="chat"></ChatPreview>
             </b-list-group-item>
         </b-list-group>
     </div>
@@ -23,12 +29,20 @@
     import ChatPreview from "./ChatPreview";
     export default {
         name: "LeftSideChatsList",
+        props: [
+            "chats"
+        ],
         data() {
             return {
                 searchInAllChats: ""
             }
         },
-        components: {ChatPreview}
+        components: {ChatPreview},
+        methods: {
+            clickedChat(chat) {
+                this.$emit("onChatClick", chat);
+            }
+        }
     }
 </script>
 

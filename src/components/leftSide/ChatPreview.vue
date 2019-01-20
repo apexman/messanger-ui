@@ -8,12 +8,12 @@
                 <b-col class="chat-preview">
                     <div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <strong>Chat name</strong>
-                            <b-badge variant="dark" pill>3 days ago</b-badge>
+                            <strong>{{ chat.name }}</strong>
+                            <b-badge variant="dark" pill>{{ chat.lastMessage.time }}</b-badge>
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            Chat's last message
-                            <b-badge pill variant="success">15</b-badge>
+                            {{ chat.lastMessage.text }}
+                            <b-badge pill variant="success">{{ chat.unreadMessagesCount }}</b-badge>
                         </div>
                     </div>
                 </b-col>
@@ -24,7 +24,13 @@
 
 <script>
     export default {
-        name: "ChatPreview"
+        name: "ChatPreview",
+        props: {
+            chat: {
+                type: Object,
+                required: false,
+            }
+        },
     }
 </script>
 

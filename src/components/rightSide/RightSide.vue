@@ -1,10 +1,19 @@
 <template>
-    <div
-            style="height: 100%">
+    <div style="height: 100%" class="d-flex flex-column justify-content-between flex-direction: column">
         <RightSideHeader></RightSideHeader>
-        <RightSideMessagesList
-                :messages="chat.messages"></RightSideMessagesList>
+
+        <div
+                v-if="hasMessages"
+                class="align-self-stretch flex-direction: column mt-auto">
+            <RightSideMessagesList
+                    :messages="chat.messages"></RightSideMessagesList>
+        </div>
+        <div v-if="!hasMessages">
+            No messages
+        </div>
+
         <RightSideInputForm
+                :chat="chat"
                 :messages="chat.messages"></RightSideInputForm>
     </div>
 </template>
@@ -18,7 +27,16 @@
         props: [
             "chat"
         ],
-        components: {RightSideInputForm, RightSideMessagesList, RightSideHeader}
+        components: {RightSideInputForm, RightSideMessagesList, RightSideHeader},
+        computed: {
+            hasMessages() {
+                let hasMessages = false;
+
+                hasMessages = this.chat.messages != null && this.chat.messages.length > 0;
+
+                return hasMessages;
+            }
+        }
     }
 </script>
 

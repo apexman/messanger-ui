@@ -12,9 +12,12 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         name: "RightSideInputForm",
         props: [
+            "chat",
             "messages"
         ],
         data() {
@@ -25,8 +28,18 @@
         methods: {
             sendMessage(){
                 console.log("sendMessage");
-                this.messages.push({id: this.text, text: this.text});
-            }
+                if (this.text && this.text.trim() !== "") {
+                    this.messages.push({id: this.text, text: this.text});
+
+                    // axios.post("/chat", {chatId: this.chat.id, text: this.text})
+                    //     .then(function (response) {
+                    //         console.log(response);
+                    //     })
+                    //     .catch(function (error) {
+                    //         console.log(error);
+                    //     });
+                }
+            },
         }
     }
 </script>

@@ -1,14 +1,17 @@
 <template>
     <div style="height: 100%;">
+        <b-btn style="display: none" @click="getHelloWorld">aaaaaaaaaaaaaa</b-btn>
         <table>
             <tr>
                 <!--<td>Left column with users list, search, 3 lines menu, app name</td>-->
                 <td class="left-side-column">
-                    <LeftSide></LeftSide>
+                    <LeftSide
+                            v-on:onChatClick="onChatClick"
+                            :chats="chats"></LeftSide>
                 </td>
                 <!--<td>Right column with messages, place to write, search in history, 3 dots menu</td>-->
                 <td class="right-side-column">
-                    <RightSide :chat="chats[0]"></RightSide>
+                    <RightSide :chat="this.clickedChat"></RightSide>
                 </td>
             </tr>
         </table>
@@ -19,16 +22,27 @@
     import Header from "./leftSide/LeftSideHeader";
     import LeftSide from "./leftSide/LeftSide";
     import RightSide from "./rightSide/RightSide";
+    import axios from "axios";
 
     export default {
         name: "MainPage",
         components: {RightSide, LeftSide, Header},
         data() {
             return {
+                clickedChat: {},
                 chats: [
                     {
                         id: 1,
                         img: "",
+                        name: "chat1",
+                        unreadMessagesCount: 15,
+                        lastMessage: {
+                            id: 4,
+                            img: "",
+                            text: ":)",
+                            time: "3 days ago",
+                            isMine: true
+                        },
                         messages: [
                             {
                                 id: 1,
@@ -38,29 +52,84 @@
                                 isMine: false
                             },
                             {
-                                id: 1,
+                                id: 2,
                                 img: "",
                                 text: "bbbbbbbbbbbbbb",
                                 time: "",
                                 isMine: true
                             },
                             {
-                                id: 1,
+                                id: 3,
                                 img: "",
                                 text: "dddddddddddddffffffffa",
                                 time: "",
                                 isMine: false
                             },
                             {
-                                id: 1,
+                                id: 4,
                                 img: "",
                                 text: ":)",
                                 time: "",
                                 isMine: true
                             }
                         ]
-                    }
+                    },
+                    {
+                        id: 2,
+                        img: "",
+                        name: "chat1",
+                        unreadMessagesCount: 15,
+                        lastMessage: {
+                            id: 4,
+                            img: "",
+                            text: ":)",
+                            time: "3 days ago",
+                            isMine: true
+                        },
+                        messages: [
+                            {
+                                id: 1,
+                                img: "",
+                                text: "321423",
+                                time: "",
+                                isMine: false
+                            },
+                            {
+                                id: 2,
+                                img: "",
+                                text: "fsadfas",
+                                time: "",
+                                isMine: true
+                            },
+                            {
+                                id: 3,
+                                img: "",
+                                text: ";sdf;lgasd",
+                                time: "",
+                                isMine: false
+                            },
+                            {
+                                id: 4,
+                                img: "",
+                                text: ":)",
+                                time: "",
+                                isMine: true
+                            }
+                        ]
+                    },
                 ]
+            }
+        },
+        methods: {
+            onChatClick(chat) {
+                this.clickedChat = chat;
+            },
+            getHelloWorld() {
+                axios
+                    .get('session/increment')
+                    .then(function (response) {
+                        console.log(response);
+                    });
             }
         }
 

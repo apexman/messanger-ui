@@ -7,7 +7,7 @@
             <!--<b-list-group-item flush>-->
                 <!--<Message :message="message2"></Message>-->
             <!--</b-list-group-item>-->
-            <b-list-group-item v-for="message in messages">
+            <b-list-group-item v-for="message in messages" :key="message.id">
                 <Message :message="message.text"></Message>
             </b-list-group-item>
         </b-list-group>
@@ -24,10 +24,6 @@
         ],
         data() {
             return {
-                message1: "МЕСССАААГАААА dddddddddddd dddddddddddddddddddddddddd dddddddddddddddddddddddddddddddd ddddddddddddddddddddd dddddddddddddddddddd dddddddddddd" +
-                "МЕСССАААГАААА dddddddddddd dddddddddddddddddddddddddd dddddddddddddddddddddddddddddddd ddddddddddddddddddddd dddddddddddddddddddd dddddddddddd" +
-                "МЕСССАААГАААА dddddddddddd dddddddddddddddddddddddddd dddddddddddddddddddddddddddddddd ddddddddddddddddddddd dddddddddddddddddddd dddddddddddd",
-                message2: "ФФФФФФФФФФФФААААААААААААААААААААААРШ",
             }
         }
     }
