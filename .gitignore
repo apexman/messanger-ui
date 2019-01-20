@@ -1,0 +1,18 @@
+**/webapp/isomorphic
+**/target/classes
+.classpath
+.project
+.settings
+.DS_Store
+/bin
+/target
+
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+/node_modules
+/dist
