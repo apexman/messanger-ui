@@ -1,3 +1,6 @@
+# Project to touch new (on that moment) technology
+currenlty not supported
+
 # validation
 
 ## Project setup
